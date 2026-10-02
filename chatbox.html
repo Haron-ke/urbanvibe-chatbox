@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101020">
+<meta name="description" content="Send a private message to Urbanvibe Adventures, anonymously or with an optional WhatsApp reply.">
+<title>Urbanvibe Adventures™ Chatbox</title>
+<style>
+:root{--bg:#090912;--panel:#12121f;--ink:#f8f7ff;--muted:#b9b8cb;--line:#ffffff20;--pink:#ff168f;--orange:#ff7a18;--purple:#7b2cff;--blue:#16b8ff;--green:#23c65a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#5e174b44,transparent 38%),radial-gradient(ellipse at 90% 20%,#173f7140,transparent 35%),var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(100% - 30px,760px);margin:auto}
+.topbar{display:flex;align-items:center;gap:12px;padding:18px 0 14px}.logo{width:64px;height:64px;object-fit:contain;border-radius:16px;background:#050509;border:1px solid #ffffff22;padding:4px;flex-shrink:0}.brand{min-width:0}.brandname{font-weight:900;letter-spacing:.035em;font-size:clamp(15px,3.7vw,21px);line-height:1.25}.brandname .multi{background:linear-gradient(100deg,#ff168f 0%,#ff7a18 28%,#ffd447 46%,#27d66b 64%,#19baff 82%,#a24dff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.tm{font-size:.58em;vertical-align:super}.brand-sub{font-size:13px;color:#d5d2e6;letter-spacing:.23em;margin-top:4px;font-weight:800}
+.rule{height:3px;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--orange),#ffd447,var(--green),var(--blue),var(--purple),var(--pink));background-size:300% 300%;animation:gradientSwap 8s ease infinite;opacity:.9}
+.hero{display:none}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#f5d6ee;border:1px solid #ffffff22;background:#ffffff08;padding:7px 12px;border-radius:99px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.dot{width:7px;height:7px;background:#35e88a;border-radius:50%;box-shadow:0 0 12px #35e88a}
+h1{font-size:clamp(34px,8vw,58px);line-height:1.02;letter-spacing:-.045em;margin:20px 0 12px;font-weight:950}.gradient-text{background:linear-gradient(95deg,#ff2998,#ff8a22,#ffdc4b,#3bdc8a,#28c4ff,#a65aff);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:510px;margin:0 auto;color:var(--muted);line-height:1.65;font-size:15px}
+.chat-card{position:relative;margin:20px auto 0;padding:2px;border-radius:28px;background:linear-gradient(135deg,var(--pink),var(--orange),#f6cf40,var(--green),var(--blue),var(--purple),var(--pink));background-size:300% 300%;animation:gradientSwap 10s ease infinite;box-shadow:0 18px 70px #7d24ff20}
+.chat-inner{border-radius:26px;overflow:hidden;background:#10101b}.chat-head{padding:23px 20px 19px;text-align:center;background:linear-gradient(115deg,#7318e7 0%,#3e45e9 28%,#168df0 56%,#11c4db 100%,#e91e9b 125%);background-size:250% 250%;animation:gradientSwap 12s ease infinite}.chat-head h2{font-size:clamp(21px,5vw,30px);line-height:1.1;margin:0;font-weight:950;letter-spacing:.025em;color:white;text-shadow:0 2px 12px #0003}.chat-head p{margin:7px 0 0;color:#f1f7ff;font-size:13px;font-weight:650}
+.form-body{padding:22px;display:grid;gap:15px}.field{display:grid;gap:8px;text-align:left}.field label{font-size:13px;color:#e5e1f2;font-weight:750}.field input,.field textarea,.field select{width:100%;border:1px solid #ffffff24;background:#090912;color:#fff;border-radius:14px;padding:14px 15px;outline:none;transition:border .2s,box-shadow .2s}.field select{appearance:auto;color-scheme:dark}.field input[type=radio]{width:auto;accent-color:#b83cff;padding:0}.field input:focus,.field textarea:focus,.field select:focus{border-color:#a76cff;box-shadow:0 0 0 3px #8a39ff22}.field textarea{min-height:135px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:#77768d}.hint{font-size:12px;color:#a9a7bd;line-height:1.5}.send{width:100%;border:0;border-radius:14px;padding:15px 18px;color:#fff;font-weight:900;background:linear-gradient(100deg,#f10c91 0%,#ff6a26 35%,#9b35f4 68%,#178cf4 100%);box-shadow:0 8px 24px #b82cff25;transition:transform .15s,filter .15s}.send:hover{filter:brightness(1.08);transform:translateY(-1px)}.send:disabled{opacity:.65;cursor:wait;transform:none}.status{min-height:20px;text-align:center;color:#d8d4e8;font-size:13px}.privacy{display:flex;gap:9px;align-items:flex-start;color:#aeadc1;font-size:12px;line-height:1.5}.privacy span{color:#f6b8e2}
+.footer{padding:24px 0 35px;text-align:center;color:#85849b;font-size:12px}.footer strong{background:linear-gradient(90deg,#ff5cae,#ffad45,#58c7ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.admin-area{margin:15px 0 40px;border:1px solid var(--line);background:#ffffff05;border-radius:20px;padding:16px}.admin-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.admin-top h3{margin:0;font-size:15px}.quiet-btn{border:1px solid #ffffff2b;background:#ffffff0a;color:#eeeaf9;border-radius:10px;padding:9px 12px;font-size:12px;font-weight:750}.admin-panel{display:none;margin-top:16px}.admin-panel.open{display:block}.admin-login{display:grid;gap:10px}.admin-login input{width:100%;padding:12px;border-radius:10px;border:1px solid #ffffff22;background:#090912;color:white}.admin-note{font-size:12px;color:#aaa8bf;line-height:1.5}.message-list{display:grid;gap:10px}.message{border:0;border-radius:14px;background:linear-gradient(#0b0b15,#0b0b15) padding-box,linear-gradient(120deg,#f10c91,#ff9b2f,#f6cf40,#23c65a,#16b8ff,#7b2cff) border-box;border:1px solid transparent;padding:13px}.message-meta{display:flex;justify-content:space-between;gap:8px;color:#aaa8bf;font-size:11px;margin-bottom:8px}.message p{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;line-height:1.55}.message-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}.message-actions button{font-size:11px}.stats-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}.stat-card{border:1px solid #ffffff20;border-radius:12px;padding:12px;background:#ffffff08}.stat-card strong{display:block;font-size:22px}.stat-card span{font-size:11px;color:#b9b8cb}.category-counts{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 16px}.category-pill{border:1px solid #ffffff20;border-radius:99px;padding:6px 9px;font-size:11px;color:#eeeaf9;background:#ffffff08}.reply-choice{display:flex;gap:10px;flex-wrap:wrap}.reply-option{display:flex;align-items:center;gap:7px;border:1px solid #ffffff24;background:#ffffff08;border-radius:12px;padding:10px 14px;font-size:13px}.sent-tick{display:inline-block;margin-right:5px;color:#73f0b0;font-weight:900}.hidden{display:none!important}@keyframes gradientSwap{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@media(min-width:650px){.topbar{padding-top:24px}.hero{padding-top:45px}.form-body{padding:28px 32px}.chat-head{padding:28px 24px 23px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <img class="logo" src="assets/urbanvibe-logo.png" alt="Urbanvibe Adventures logo">
+    <div class="brand">
+      <div class="brandname"><span class="multi">ᴜʀʙᴀɴᴠɪʙᴇ ᴀᴅᴠᴇɴᴛᴜʀᴇs</span> <span class="tm">ᵗᵐ</span></div>
+      <div class="brand-sub">ᴄʜᴀᴛʙᴏx</div>
+    </div>
+  </header>
+  <div class="rule"></div>
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="dot"></span> Anonymous message box</div>
+      <h1>Say it <span class="gradient-text">without fear.</span></h1>
+      <p class="lead">Questions, confessions, suggestions or just vibes — leave a message for Urbanvibe Adventures. Your name is optional.</p>
+    </section>
+
+    <section class="chat-card" aria-labelledby="boxTitle">
+      <div class="chat-inner">
+        <div class="chat-head">
+          <h2 id="boxTitle">URBANVIBE ADVENTURES™<br>Chatbox</h2>
+          <p>Share your thoughts with Urbanvibe Adventures ✨</p>
+        </div>
+        <form id="messageForm" class="form-body">
+          <div class="field">
+            <label for="category">What would you like to talk about?</label>
+            <select id="category" name="category" required>
+              <option value="" selected disabled>Choose a topic</option>
+              <option>Matatu culture / Nganya</option>
+              <option>Upcoming trips</option>
+              <option>Trip bookings and enquiries</option>
+              <option>Questions</option>
+              <option>Latest updates</option>
+              <option>Suggestions and feedback</option>
+              <option>Compliments and confessions</option>
+              <option>Complaints</option>
+              <option>Business and partnerships</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="senderName">Name (optional)</label>
+            <input id="senderName" name="senderName" maxlength="60" placeholder="Leave blank to stay anonymous" autocomplete="nickname">
+          </div>
+          <div class="field">
+            <label>Do you need a reply?</label>
+            <div class="reply-choice">
+              <label class="reply-option"><input type="radio" name="needsReply" value="yes"> Yes, reply on WhatsApp</label>
+              <label class="reply-option"><input type="radio" name="needsReply" value="no" checked> No, remain anonymous</label>
+            </div>
+          </div>
+          <div class="field hidden" id="whatsappField">
+            <label for="whatsappNumber">Your WhatsApp number</label>
+            <input id="whatsappNumber" name="whatsappNumber" type="tel" maxlength="25" placeholder="Include country code, e.g. +2547XXXXXXXX" autocomplete="tel">
+            <div class="hint">Only provide your number if you want Urbanvibe Adventures to reply.</div>
+          </div>
+          <div class="field">
+            <label for="message">Your message</label>
+            <textarea id="message" name="message" required minlength="2" maxlength="2000" placeholder="Type what you want to say..." ></textarea>
+          </div>
+          <input id="website" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+          <button class="send" id="sendBtn" type="submit">Send message&nbsp; ↗</button>
+          <div class="status" id="formStatus" role="status" aria-live="polite"></div>
+          <div class="privacy"><span>✦</span><div>Please avoid sharing passwords, financial details, or other sensitive personal information.</div></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="admin-area" aria-label="Private inbox">
+      <div class="admin-top">
+        <h3>🔐 Owner inbox</h3>
+        <button type="button" class="quiet-btn" id="toggleAdmin">Open private inbox</button>
+      </div>
+      <div class="admin-panel" id="adminPanel">
+        <p class="admin-note">The Owner Inbox is restricted. Enter your sign-in email; unauthorized addresses will be rejected.</p>
+        <form class="admin-login" id="loginForm">
+          <input id="adminEmail" type="email" placeholder="Enter owner email privately" autocomplete="email" required aria-label="Owner email">
+          <button class="quiet-btn" type="submit">Email me a secure sign-in link</button>
+          <div class="status" id="loginStatus" role="status"></div>
+        </form>
+        <div id="inbox" class="hidden">
+          <div class="stats-grid" id="statsGrid">
+            <div class="stat-card"><strong id="visitCount">—</strong><span>Unique browsers</span></div>
+            <div class="stat-card"><strong id="messageCount">—</strong><span>Messages received</span></div>
+          </div>
+          <h4 style="margin:14px 0 8px;font-size:13px">Messages by topic</h4>
+          <div class="category-counts" id="categoryCounts"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0">
+            <strong style="font-size:14px">Your messages</strong>
+            <button type="button" class="quiet-btn" id="refreshInbox">Refresh</button>
+          </div>
+          <div class="status" id="inboxStatus" role="status"></div>
+          <div class="message-list" id="messageList"></div>
+          <button type="button" class="quiet-btn" id="signOut" style="margin-top:12px">Sign out</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">Made for <strong>Urbanvibe Adventures™</strong> · Keep the vibes respectful ✦</footer>
+</div>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL = 'PASTE_YOUR_SUPABASE_PROJECT_URL_HERE';
+const SUPABASE_ANON_KEY = 'PASTE_YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY_HERE';
+const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('PASTE_') && !SUPABASE_ANON_KEY.includes('PASTE_');
+const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+const form = document.getElementById('messageForm');
+const statusEl = document.getElementById('formStatus');
+const sendBtn = document.getElementById('sendBtn');
+const adminPanel = document.getElementById('adminPanel');
+const inbox = document.getElementById('inbox');
+const loginForm = document.getElementById('loginForm');
+const loginStatus = document.getElementById('loginStatus');
+const inboxStatus = document.getElementById('inboxStatus');
+const messageList = document.getElementById('messageList');
+const whatsappField = document.getElementById('whatsappField');
+const whatsappNumber = document.getElementById('whatsappNumber');
+
+function setStatus(el, text, good=false){el.textContent=text;el.style.color=good?'#73f0b0':'#ffb9d3';}
+function ready(){if(!supabase){setStatus(statusEl,'Setup is not finished yet. Add your Supabase URL and publishable key, then deploy the message function.');return false;}return true;}
+function getVisitorId(){
+  const key='urbanvibe_chatbox_visitor_id';
+  try {
+    let id=localStorage.getItem(key);
+    if(!id){id=(crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`);localStorage.setItem(key,id);}
+    return id;
+  } catch { return `${Date.now()}-${Math.random().toString(36).slice(2)}`; }
+}
+async function callFunction(payload, token=SUPABASE_ANON_KEY){
+  return fetch(`${SUPABASE_URL}/functions/v1/submit-message`,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${token}`},
+    body:JSON.stringify(payload)
+  });
+}
+async function trackVisit(){
+  if(!supabase)return;
+  try { await callFunction({action:'visit',visitorId:getVisitorId()}); } catch {}
+}
+document.querySelectorAll('input[name="needsReply"]').forEach(el=>el.addEventListener('change',()=>{
+  const wantsReply=document.querySelector('input[name="needsReply"]:checked')?.value==='yes';
+  whatsappField.classList.toggle('hidden',!wantsReply);
+  whatsappNumber.required=wantsReply;
+  if(!wantsReply)whatsappNumber.value='';
+}));
+
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  if(document.getElementById('website').value) return;
+  if(!ready()) return;
+  const message = document.getElementById('message').value.trim();
+  const senderName = document.getElementById('senderName').value.trim();
+  const category = document.getElementById('category').value;
+  const wantsReply = document.querySelector('input[name="needsReply"]:checked')?.value==='yes';
+  const rawPhone = whatsappNumber.value.trim();
+  if(!category){setStatus(statusEl,'Please choose a topic first.');return;}
+  if(message.length < 2){setStatus(statusEl,'Please write a little more before sending.');return;}
+  if(wantsReply && rawPhone.replace(/[^\d]/g,'').length < 8){setStatus(statusEl,'Please enter a valid WhatsApp number with country code.');return;}
+  sendBtn.disabled=true;sendBtn.textContent='Sending…';setStatus(statusEl,'');
+  try{
+    const response = await callFunction({
+      action:'message',
+      message,
+      category,
+      senderName:senderName||null,
+      whatsappNumber:wantsReply ? rawPhone : null
+    });
+    const result = await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(result.error || 'Message could not be sent. Please try again later.');
+    form.reset();
+    whatsappField.classList.add('hidden');
+    whatsappNumber.required=false;
+    setStatus(statusEl,'✓ Successfully sent!',true);
+    setTimeout(()=>{if(statusEl.textContent==='✓ Successfully sent!')statusEl.textContent='';},3200);
+  }catch(err){setStatus(statusEl,err.message||'Could not send the message. Please try again.');}
+  finally{sendBtn.disabled=false;sendBtn.textContent='Send message ↗';}
+});
+
+function openOwnerPanel(){
+  adminPanel.classList.add('open');
+  document.getElementById('toggleAdmin').textContent='Close private inbox';
+  adminPanel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function closeOwnerPanel(){
+  adminPanel.classList.remove('open');
+  document.getElementById('toggleAdmin').textContent='Open private inbox';
+}
+document.getElementById('toggleAdmin').addEventListener('click',()=>{
+  if(adminPanel.classList.contains('open')) closeOwnerPanel();
+  else { openOwnerPanel(); checkSession(); }
+});
+loginForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!ready())return;
+  const email=document.getElementById('adminEmail').value.trim().toLowerCase();
+  if(!email){setStatus(loginStatus,'Please enter your email address.');return;}
+  setStatus(loginStatus,'Checking authorization…',true);
+  const check=await callFunction({action:'check-owner',email});
+  const result=await check.json().catch(()=>({}));
+  if(!check.ok){
+    setStatus(loginStatus,check.status===403?'This email is not authorized to access the Owner Inbox.':(result.error||'Could not verify this email. Please try again later.'));
+    return;
+  }
+  setStatus(loginStatus,'Sending secure sign-in link…',true);
+  const {error}=await supabase.auth.signInWithOtp({email,options:{emailRedirectTo:location.href.split('#')[0],shouldCreateUser:false}});
+  if(error)setStatus(loginStatus,error.message);
+  else setStatus(loginStatus,'Check your email for the secure sign-in link. Open it in this browser.',true);
+});
+let checkingSession=false;
+async function checkSession(){
+  if(!ready()||checkingSession)return;
+  checkingSession=true;
+  try{
+    const {data:{session}}=await supabase.auth.getSession();
+    if(!session){loginForm.classList.remove('hidden');inbox.classList.add('hidden');return;}
+    const response=await callFunction({action:'check-owner'},session.access_token);
+    const result=await response.json().catch(()=>({}));
+    if(response.ok&&result.authorized===true){
+      loginForm.classList.add('hidden');inbox.classList.remove('hidden');openOwnerPanel();await loadMessages();
+    }else{
+      await supabase.auth.signOut();
+      loginForm.classList.remove('hidden');inbox.classList.add('hidden');
+      setStatus(loginStatus,'This account is not authorized to access the Owner Inbox.');
+    }
+  }catch(err){
+    setStatus(loginStatus,'Could not verify your session. Please try again.');
+  }finally{checkingSession=false;}
+}
+async function loadMetrics(){
+  if(!supabase)return;
+  const {data:{session}}=await supabase.auth.getSession();
+  if(!session)return;
+  try{
+    const response=await callFunction({action:'metrics'},session.access_token);
+    const result=await response.json();
+    if(!response.ok)throw new Error(result.error||'Could not load statistics.');
+    document.getElementById('visitCount').textContent=Number(result.uniqueVisitors||0).toLocaleString();
+    document.getElementById('messageCount').textContent=Number(result.totalMessages||0).toLocaleString();
+    const counts=document.getElementById('categoryCounts');counts.replaceChildren();
+    const entries=Object.entries(result.byCategory||{});
+    if(!entries.length){const pill=document.createElement('span');pill.className='category-pill';pill.textContent='No messages yet';counts.append(pill);}
+    for(const [category,count] of entries){
+      const pill=document.createElement('span');pill.className='category-pill';pill.textContent=`${category}: ${count}`;counts.append(pill);
+    }
+  }catch(e){setStatus(inboxStatus,'Messages loaded; statistics unavailable until the updated function is deployed.');}
+}
+async function loadMessages(){
+  if(!supabase)return;
+  setStatus(inboxStatus,'Loading messages…',true);messageList.replaceChildren();
+  let data = [];
+  for(let from=0; ; from+=500){
+    const page = await supabase.from('messages').select('id,sender_name,message,category,whatsapp_number,created_at').order('created_at',{ascending:false}).range(from,from+499);
+    if(page.error){setStatus(inboxStatus,'Could not load inbox: '+page.error.message);return;}
+    data = data.concat(page.data || []);
+    if(!page.data || page.data.length < 500) break;
+  }
+  if(!data.length){setStatus(inboxStatus,'No messages yet.',true);await loadMetrics();return;}
+  setStatus(inboxStatus,`${data.length} message${data.length===1?'':'s'} loaded.`,true);
+  for(const item of data){
+    const card=document.createElement('article');card.className='message';
+    const meta=document.createElement('div');meta.className='message-meta';
+    const sender=document.createElement('span');sender.textContent=item.sender_name||'Anonymous';
+    const date=document.createElement('time');date.textContent=new Date(item.created_at).toLocaleString();
+    meta.append(sender,date);
+    const topic=document.createElement('div');topic.className='category-pill';topic.style.display='inline-block';topic.style.marginBottom='9px';topic.textContent=item.category||'Other';
+    const p=document.createElement('p');p.textContent=item.message;
+    card.append(meta,topic,p);
+    if(item.whatsapp_number){
+      const actions=document.createElement('div');actions.className='message-actions';
+      const reply=document.createElement('button');reply.type='button';reply.className='quiet-btn';reply.textContent='Reply on WhatsApp';
+      reply.addEventListener('click',()=>{
+        const digits=item.whatsapp_number.replace(/\D/g,'');
+        if(digits.length<8){setStatus(inboxStatus,'This WhatsApp number looks invalid.');return;}
+        const text=`Hi${item.sender_name ? ' '+item.sender_name : ''}, regarding your Urbanvibe Adventures message about ${item.category||'your message'}: ${item.message}`;
+        window.open(`https://wa.me/${digits}?text=${encodeURIComponent(text)}`,'_blank','noopener');
+      });
+      actions.append(reply);card.append(actions);
+    }
+    messageList.append(card);
+  }
+  await loadMetrics();
+}
+document.getElementById('refreshInbox').addEventListener('click',loadMessages);
+document.getElementById('signOut').addEventListener('click',async()=>{if(supabase)await supabase.auth.signOut();loginForm.classList.remove('hidden');inbox.classList.add('hidden');closeOwnerPanel();setStatus(loginStatus,'Signed out.',true);});
+if(supabase){
+  trackVisit();
+  supabase.auth.onAuthStateChange((event,session)=>{
+    if(session && ['SIGNED_IN','INITIAL_SESSION','TOKEN_REFRESHED','USER_UPDATED'].includes(event)){
+      // Defer so Supabase can finish its internal auth-state work first.
+      setTimeout(()=>checkSession(),0);
+    }
+  });
+  (async()=>{
+    // Support PKCE callbacks (?code=...) as well as implicit-flow token hashes.
+    const params=new URLSearchParams(location.search);
+    if(params.has('code')){
+      const {error}=await supabase.auth.exchangeCodeForSession(params.get('code'));
+      if(error)setStatus(loginStatus,'The sign-in link could not be verified. Please open the newest valid link.');
+      else history.replaceState({},document.title,location.pathname+location.hash);
+    }
+    const hash=new URLSearchParams(location.hash.slice(1));
+    if(hash.has('access_token')) setTimeout(()=>checkSession(),300);
+    else setTimeout(()=>checkSession(),300);
+  })();
+}
+</script>
+</body>
+</html>
